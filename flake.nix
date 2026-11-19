@@ -27,7 +27,8 @@
           #      buildInputs = [ pkgs.gtk3 pkgs.libayatana-appindicator ];
 
           # udev rule for the FX Pak Pro / SD2SNES (Linux only)
-          postInstall = lib.optionalString stdenv.isLinux ''
+          postInstall = lib.optionalString stdenv.hostPlatform.isLinux ''
+
             install -Dm644 linux/udev/rules.d/*.rules -t $out/lib/udev/rules.d
           '';
 
